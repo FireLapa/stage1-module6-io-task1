@@ -15,13 +15,17 @@ public class FileReader {
 
             while ((line = br.readLine()) != null) {
                 String[] text = line.split(": ");
-                System.out.println(Arrays.toString(text));
                 card[i] = text[1];
                 i++;
             }
-            br.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return new Profile(card[0], Integer.valueOf(card[1]), card[2], Long.valueOf(card[3]));
     }
